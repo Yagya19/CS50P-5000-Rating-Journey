@@ -1,0 +1,47 @@
+""""
+PROBLEM 20: Ultimate System Analyzer
+Task: Write a function called system_analyzer that takes multiple inputs and creates a comprehensive system analysis with advanced calculations.
+Requirements:
+Function name: system_analyzer 
+result1 = system_analyzer("johndoe", "SecurePass1", 25, 75, 10)
+result2 = system_analyzer("marysmith", "MySecret2", 30, 80, 10)
+result3 = system_analyzer("alexbrown", "TechPwd3", 28, 60, 10)
+Takes 5 parameters: username, password, age, score, level
+Calculate username strength: length × 3 + vowel_count × 2
+Calculate password complexity: length × 4 + uppercase_count × 3 + digit_count × 5
+Calculate user rating: (age × score × level) ÷ 100
+Create system ID: first3_username + age + last2_password + level
+Calculate total system score: username_strength + password_complexity + user_rating
+Return formatted string: "USER: X | ID: Y | U-STR: A | P-COM: B | RATING: C.C | TOTAL: D.D"
+Round rating and total to 1 decimal place
+USER: JOHNDOE | ID: joh25e91 | U-STR: 25 | P-COM: 47 | RATING: 187.5 | TOTAL: 259.5
+USER: MARYSMITH | ID: mar30t72 | U-STR: 31 | P-COM: 52 | RATING: 240.0 | TOTAL: 323.0
+USER: ALEXBROWN | ID: ale28n83 | U-STR: 32 | P-COM: 49 | RATING: 168.0 | TOTAL: 249.0
+"""
+def main(): # define main
+    result1 = system_analyzer("johndoe", "SecurePass1", 25, 75, 10) # set string variable for calling function / 2 texts and 3 nos
+    result2 = system_analyzer("marysmith", "MySecret2", 30, 80, 10)
+    result3 = system_analyzer("alexbrown", "TechPwd3", 28, 60, 10)
+
+    print(result1) #print item stored in storing variable / item returned by calling func
+    print(result2)
+    print(result3)
+
+def system_analyzer(username, password, age, score, level): #def calling func / 5 temp storing variables
+    length=len(username) #get count of all chars
+    vowel_count=username.count("a")+username.count("e")+username.count("i")+username.count("o")+username.count("u") #use count.("a") -- To get count number / takes only 1 argument
+    user_strength=length*3+vowel_count*2
+    uppercase_count=username.count("A") + username.count("B") + username.count("C") + username.count("D") + username.count("E") + username.count("F") + username.count("G") + username.count("H")  + username.count("I") + username.count("J") + username.count("K") + username.count("L") + username.count("M") + username.count("N") + username.count("O") + username.count("P") +username.count("Q") + username.count("R") + username.count("S") + username.count("T") + username.count("U") + username.count("V") + username.count("W") + username.count("X") + username.count("Y") + username.count("Z")
+    digit_count=username.count("0") + username.count("1") + username.count("2") + username.count("3") + username.count("4") + username.count("5") + username.count("6") 
+    + username.count("7") + username.count("8") + username.count("9") #same funda just count("0") / go till 9 : will get number of that digit
+    password_complexity = length*4 + uppercase_count*3 + digit_count*5 # formulas 
+    user_rating = (age*score*level)/100
+    first3username=username[:3]
+    last2_password=password[-2]
+    system_ID=first3username + str(age) + str(last2_password) + str(level)
+    system_score = user_strength + password_complexity + user_rating 
+    caps_user=username.upper()
+
+    return f"USER:{caps_user} | ID:{system_ID} | U-STR : {user_strength} | P-COM : {password_complexity} | Rating : {user_rating:0.1f} | Total : {system_score:0.1f}" #return fstring with variables
+
+main() #called main function 
